@@ -1,4 +1,4 @@
-# DESAFIOG03 | Gerenciador de Músicas Eletrônicas 🎵
+# DESAFIOG03 | Desempacotando Arquivos JSON 🎵
 
 [![Go](https://img.shields.io/badge/Go-1.22%2B-00ADD8?style=flat-square&logo=go)](https://golang.org)
 [![Next.js](https://img.shields.io/badge/Next.js-16-000000?style=flat-square&logo=next.js)](https://nextjs.org)
