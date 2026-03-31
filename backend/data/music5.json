@@ -1,0 +1,18 @@
+{
+  "id": 5,
+  "titulo": "Mockingbird",
+  "artista": "Tiësto",
+  "genero": "Progressive House",
+  "duracao": "5:45",
+  "bpm": 124,
+  "ano": 2019,
+  "producao": {
+    "produtor": "Tiësto",
+    "pais": "Holanda",
+    "gravadora": "Musical Freedom"
+  },
+  "instrumentos": ["Sintetizador melódico", "Vocais suaves", "Bateria progressiva", "Baixo groovado", "Orquestra sintetizada", "Efeitos ambientais"],
+  "ambiente": "Céu noturno com paisagem urbana futurista",
+  "cores_predominantes": ["Azul celeste", "Rosa suave", "Roxo cósmico"],
+  "arquivo_mp3": "Tiësto - Mockingbird.mp3"
+}

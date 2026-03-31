@@ -1,0 +1,50 @@
+@use '../../shared/styles/variables' as *;
+@use '../../shared/styles/animations' as *;
+
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  vertical-align: middle;
+}
+
+.boxContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 18px;
+  --boxSize: 4px;
+  --gutter: 3px;
+  width: calc((var(--boxSize) + var(--gutter)) * 5);
+}
+
+.box {
+  height: 100%;
+  width: var(--boxSize);
+  background: linear-gradient(
+    to top,
+    $neon-green 0%,
+    $neon-blue 45%,
+    $neon-purple 100%
+  );
+  box-shadow:
+    0 0 6px rgba($neon-green, 0.6),
+    0 0 12px rgba($neon-blue, 0.3);
+  animation-duration: var(--bar-duration, 1.2s);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  border-radius: 2px;
+  transform-origin: bottom;
+  transform: scaleY(0.4);
+}
+
+.quiet  { animation-name: quiet; }
+.normal { animation-name: normal; }
+.loud   { animation-name: loud; }
+
+.paused {
+  animation-play-state: paused;
+  transform: scaleY(0.15);
+  opacity: 0.3;
+  transition: transform 0.3s, opacity 0.3s;
+}

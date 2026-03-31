@@ -1,0 +1,18 @@
+{
+  "id": 2,
+  "titulo": "Animals",
+  "artista": "Martin Garrix",
+  "genero": "Electro House",
+  "duracao": "4:02",
+  "bpm": 128,
+  "ano": 2013,
+  "producao": {
+    "produtor": "Martin Garrix",
+    "pais": "Holanda",
+    "gravadora": "Spinnin' Records"
+  },
+  "instrumentos": ["Sintetizador agressivo", "Drop pesado", "Bateria eletrônica", "Baixo distorcido", "Efeitos sonoros"],
+  "ambiente": "Rua cyberpunk com selvageria urbana",
+  "cores_predominantes": ["Rosa neon", "Azul elétrico", "Preto profundo"],
+  "arquivo_mp3": "Animals - Martin Garrix.mp3"
+}

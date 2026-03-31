@@ -1,0 +1,18 @@
+{
+  "id": 4,
+  "titulo": "Be The One",
+  "artista": "Eli Brown",
+  "genero": "Tech House",
+  "duracao": "6:30",
+  "bpm": 125,
+  "ano": 2015,
+  "producao": {
+    "produtor": "Eli Brown",
+    "pais": "Reino Unido",
+    "gravadora": "Crosstown Rebels"
+  },
+  "instrumentos": ["Sintetizador minimalista", "Vocais etéreos", "Bateria técnica", "Baixo hipnotizante", "Pad reverberado"],
+  "ambiente": "Clube subterrâneo com atmosfera mística",
+  "cores_predominantes": ["Roxo profundo", "Azul escuro", "Branco fantasmagórico"],
+  "arquivo_mp3": "Eli Brown - Be The One.mp3"
+}

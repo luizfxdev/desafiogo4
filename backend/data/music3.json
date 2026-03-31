@@ -1,0 +1,18 @@
+{
+  "id": 3,
+  "titulo": "Satisfaction",
+  "artista": "Benny Benassi",
+  "genero": "Electro House",
+  "duracao": "3:43",
+  "bpm": 130,
+  "ano": 2002,
+  "producao": {
+    "produtor": "Benny Benassi",
+    "pais": "Itália",
+    "gravadora": "Positiva Records"
+  },
+  "instrumentos": ["Sintetizador clássico", "Vocais femininos", "Bateria eletrônica", "Baixo pulsante", "Strings sintetizados"],
+  "ambiente": "Discoteca futurista com pista de dança iluminada",
+  "cores_predominantes": ["Rosa vibrante", "Amarelo neon", "Azul ciano"],
+  "arquivo_mp3": "Benny Benassi - Satisfaction.mp3"
+}

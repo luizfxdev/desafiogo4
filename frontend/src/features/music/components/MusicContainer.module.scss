@@ -1,0 +1,191 @@
+@use '../../shared/styles/variables' as *;
+@use '../../shared/styles/mixins' as *;
+@use '../../shared/styles/animations' as *;
+
+.header {
+  padding: 1.2rem 1.5rem 0.9rem;
+  border-bottom: 1px solid $border-glow;
+  position: relative;
+  flex-shrink: 0;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 1.5rem;
+    width: 60px;
+    height: 1px;
+    background: $neon-blue;
+    box-shadow: 0 0 8px $neon-blue;
+  }
+}
+
+.trackLabel {
+  font-family: $font-display;
+  font-size: 0.58rem;
+  letter-spacing: 4px;
+  color: $neon-blue;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+  opacity: 0.8;
+}
+
+.trackTitle {
+  font-family: $font-display;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 0 20px rgba($neon-blue, 0.5);
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.trackArtist {
+  font-size: 0.78rem;
+  color: $neon-pink;
+  letter-spacing: 2px;
+  margin-top: 0.2rem;
+  text-shadow: 0 0 10px rgba($neon-pink, 0.5);
+  font-family: $font-mono;
+}
+
+.selectWrap {
+  padding: 0.8rem 1.5rem;
+  border-bottom: 1px solid $border-glow;
+  position: relative;
+  flex-shrink: 0;
+
+  label {
+    font-family: $font-display;
+    font-size: 0.52rem;
+    letter-spacing: 3px;
+    color: $neon-purple;
+    display: block;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  &::after {
+    content: '▾';
+    position: absolute;
+    right: 1.8rem;
+    bottom: 1.4rem;
+    color: $neon-blue;
+    font-size: 0.8rem;
+    pointer-events: none;
+  }
+}
+
+.select {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  background: rgba(0, 10, 30, 0.7);
+  border: 1px solid rgba($neon-blue, 0.25);
+  color: #fff;
+  font-family: $font-mono;
+  font-size: 0.78rem;
+  letter-spacing: 1px;
+  padding: 0.6rem 2.5rem 0.6rem 1rem;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+
+  &:focus {
+    border-color: rgba($neon-blue, 0.6);
+    box-shadow: 0 0 12px rgba($neon-blue, 0.2);
+  }
+
+  option {
+    background: #080818;
+    color: #fff;
+  }
+}
+
+.statsRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-bottom: 1px solid $border-glow;
+  flex-shrink: 0;
+}
+
+.statItem {
+  padding: 0.75rem 1rem;
+  text-align: center;
+  border-right: 1px solid $border-glow;
+
+  &:last-child { border-right: none; }
+}
+
+.statValue {
+  font-family: $font-display;
+  font-size: 0.88rem;
+  font-weight: 700;
+  display: block;
+
+  &.bpm  { color: $neon-pink;   text-shadow: 0 0 10px rgba($neon-pink, 0.6); }
+  &.dur  { color: $neon-blue;   text-shadow: 0 0 10px rgba($neon-blue, 0.6); }
+  &.year { color: $neon-purple; text-shadow: 0 0 10px rgba($neon-purple, 0.6); }
+}
+
+.statLabel {
+  font-size: 0.5rem;
+  letter-spacing: 2px;
+  color: $text-muted;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 2px;
+  font-family: $font-display;
+}
+
+.btnRow {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  flex-shrink: 0;
+}
+
+.jsonOutput {
+  padding: 0.8rem 1.5rem 1rem;
+  flex: 1;
+  overflow-y: auto;
+  border-top: 1px solid $border-glow;
+  @include scrollbar-neon($neon-blue);
+}
+
+.outputLabel {
+  font-family: $font-display;
+  font-size: 0.52rem;
+  letter-spacing: 3px;
+  color: $neon-purple;
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &::before {
+    content: '▶';
+    color: $neon-green;
+    font-size: 0.5rem;
+    animation: blink 1.2s step-end infinite;
+  }
+}
+
+.jsonPre {
+  font-family: $font-mono;
+  font-size: 0.68rem;
+  line-height: 1.75;
+  color: #8892a4;
+  white-space: pre;
+  animation: fadeInUp 0.4s ease both;
+
+  .key     { color: $neon-blue; }
+  .str     { color: $neon-green; }
+  .num     { color: $neon-pink; }
+  .bracket { color: $neon-purple; }
+  .punc    { color: #3a4560; }
+}

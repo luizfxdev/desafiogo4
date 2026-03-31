@@ -1,0 +1,31 @@
+@use '../../../features/shared/styles/variables' as *;
+@use '../../../features/shared/styles/mixins' as *;
+@use '../../../features/shared/styles/animations' as *;
+
+.container {
+  width: 400px;
+  flex-shrink: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex: 1;
+  min-height: 0;
+  @include glass-panel;
+  @include neon-border($neon-blue);
+  @include cyberpunk-clip;
+  animation: flicker 0.15s ease 0.5s both;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    right: 19px;
+    width: 1px;
+    height: 20px;
+    background: $neon-blue;
+    transform: rotate(45deg) translateX(14px);
+    transform-origin: top;
+    box-shadow: 0 0 8px $neon-blue;
+  }
+}

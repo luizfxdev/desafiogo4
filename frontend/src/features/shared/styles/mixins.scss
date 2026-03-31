@@ -1,0 +1,36 @@
+@use 'variables' as *;
+
+@mixin neon-border($color: $neon-blue) {
+  border: 1px solid rgba($color, 0.3);
+  box-shadow: 0 0 20px rgba($color, 0.08), inset 0 0 20px rgba($color, 0.03);
+}
+
+@mixin glass-panel {
+  background: $bg-panel;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+@mixin cyberpunk-clip {
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+}
+
+@mixin font-display {
+  font-family: $font-display;
+  letter-spacing: 2px;
+}
+
+@mixin glow($color, $spread: 10px) {
+  box-shadow: 0 0 $spread rgba($color, 0.5);
+}
+
+@mixin text-glow($color) {
+  text-shadow: 0 0 20px rgba($color, 0.6);
+}
+
+@mixin scrollbar-neon($color: $neon-blue) {
+  scrollbar-width: thin;
+  scrollbar-color: $color transparent;
+  &::-webkit-scrollbar       { width: 3px; }
+  &::-webkit-scrollbar-thumb { background: $color; }
+}

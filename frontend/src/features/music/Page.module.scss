@@ -1,0 +1,263 @@
+@use '../shared/styles/variables' as *;
+@use '../shared/styles/mixins' as *;
+@use '../shared/styles/animations' as *;
+
+.page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: $bg-dark;
+}
+
+.gridOverlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba($neon-blue, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba($neon-blue, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: gridMove 20s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.videoWrapper {
+  position: absolute;
+  left: 480px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.videoVignette {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba($bg-dark, 0.95) 0%,
+    rgba($bg-dark, 0.6) 25%,
+    rgba($bg-dark, 0.15) 60%,
+    rgba($bg-dark, 0.05) 100%
+  );
+  pointer-events: none;
+}
+
+.scanlines {
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 100;
+}
+
+.layout {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  gap: 2.5rem;
+  padding: 1.5rem 2rem;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+  width: 400px;
+  height: 100%;
+  overflow: hidden;
+}
+
+.playerArea {
+  width: 100%;
+  padding: 0 0.5rem;
+  flex-shrink: 0;
+}
+
+.rightCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding-top: 0.5rem;
+  max-width: 380px;
+  height: 100%;
+  overflow-y: auto;
+  @include scrollbar-neon($neon-blue);
+}
+
+.pageLabel {
+  font-family: $font-display;
+  font-size: 0.58rem;
+  letter-spacing: 5px;
+  color: rgba($neon-blue, 0.6);
+  text-transform: uppercase;
+  margin-bottom: -1rem;
+}
+
+.pageTitle {
+  font-family: $font-display;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 4px;
+  line-height: 1.1;
+  text-shadow:
+    0 0 30px rgba($neon-blue, 0.4),
+    0 0 60px rgba($neon-blue, 0.15);
+
+  em {
+    font-style: normal;
+    color: $neon-pink;
+    text-shadow: 0 0 30px rgba($neon-pink, 0.6);
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  font-family: $font-display;
+  font-size: 0.52rem;
+  letter-spacing: 2px;
+  padding: 4px 12px;
+  border: 1px solid;
+  text-transform: uppercase;
+  transition: box-shadow 0.2s;
+
+  &:hover { box-shadow: 0 0 12px currentColor; }
+
+  &.tagBlue   { border-color: $neon-blue;   color: $neon-blue;   }
+  &.tagPink   { border-color: $neon-pink;   color: $neon-pink;   }
+  &.tagPurple { border-color: $neon-purple; color: $neon-purple; }
+  &.tagGreen  { border-color: $neon-green;  color: $neon-green;  }
+}
+
+.sectionLabel {
+  font-family: $font-display;
+  font-size: 0.5rem;
+  letter-spacing: 3px;
+  color: $neon-purple;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.ambienteText {
+  font-size: 0.76rem;
+  color: #8892a4;
+  line-height: 1.8;
+  font-family: $font-mono;
+}
+
+.instrumentos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.instrItem {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.68rem;
+  color: #8892a4;
+  letter-spacing: 1px;
+  padding: 0.3rem 0.6rem;
+  background: rgba($neon-blue, 0.03);
+  border-left: 2px solid rgba($neon-blue, 0.3);
+
+  &::before {
+    content: '//';
+    color: rgba($neon-blue, 0.4);
+    font-size: 0.55rem;
+  }
+}
+
+.colorsRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.colorChip {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.65rem;
+  color: #8892a4;
+  letter-spacing: 1px;
+  font-family: $font-mono;
+}
+
+.colorDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.producaoCard {
+  background: rgba($neon-blue, 0.03);
+  border: 1px solid $border-glow;
+  padding: 0.9rem 1rem;
+}
+
+.producaoGrid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.3rem 1rem;
+  align-items: center;
+}
+
+.pKey {
+  font-family: $font-display;
+  font-size: 0.5rem;
+  letter-spacing: 2px;
+  color: $text-muted;
+  text-transform: uppercase;
+}
+
+.pVal {
+  font-size: 0.68rem;
+  color: #b4bcd0;
+  font-family: $font-mono;
+  letter-spacing: 0.5px;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.loadingText {
+  font-family: $font-display;
+  font-size: 0.7rem;
+  letter-spacing: 4px;
+  color: $neon-blue;
+  animation: blink 1s step-end infinite;
+}

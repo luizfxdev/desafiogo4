@@ -1,0 +1,18 @@
+{
+  "id": 1,
+  "titulo": "Jungle",
+  "artista": "Alok, The Chainsmokers & Mae Stephens",
+  "genero": "Progressive House",
+  "duracao": "3:28",
+  "bpm": 120,
+  "ano": 2018,
+  "producao": {
+    "produtor": "Alok, The Chainsmokers",
+    "pais": "Brasil / EUA",
+    "gravadora": "Astralwerks"
+  },
+  "instrumentos": ["Sintetizador", "Vocais", "Bateria eletrônica", "Baixo sintetizado", "Pad atmosférico"],
+  "ambiente": "Floresta urbana noturna com luzes neon",
+  "cores_predominantes": ["Verde neon", "Azul neon", "Roxo"],
+  "arquivo_mp3": "Alok - Jungle.mp3"
+}

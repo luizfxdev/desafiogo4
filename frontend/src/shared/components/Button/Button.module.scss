@@ -1,0 +1,95 @@
+@use '../../../features/shared/styles/variables' as *;
+@use '../../../features/shared/styles/animations' as *;
+
+.btn {
+  flex: 1;
+  padding: 14px 20px;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: transparent;
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  transition: border-color 0.3s;
+  text-decoration: none;
+  font-family: inherit;
+  outline: none;
+
+  &:hover .wave {
+    top: -120px;
+  }
+
+  span {
+    position: relative;
+    z-index: 1;
+    color: white;
+    font-family: $font-wave;
+    font-size: 0.75rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    display: block;
+    text-align: center;
+  }
+}
+
+.wave {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  left: 0;
+  top: -80px;
+  transition: top 0.4s;
+  pointer-events: none;
+
+  &::before,
+  &::after {
+    width: 200%;
+    height: 200%;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -75%);
+  }
+}
+
+// Variante INICIAR
+.iniciar {
+  .wave {
+    background-color: rgba(0, 212, 255, 0.15);
+    box-shadow: inset 0 0 50px rgba(0, 212, 255, 0.2);
+
+    &::before {
+      border-radius: 45%;
+      background-color: rgba(0, 20, 40, 0.95);
+      animation: wave 5s linear infinite;
+    }
+
+    &::after {
+      border-radius: 40%;
+      background-color: rgba(0, 212, 255, 0.15);
+      animation: wave 10s linear infinite;
+    }
+  }
+}
+
+// Variante RETORNAR
+.retornar {
+  .wave {
+    background-color: rgba(255, 45, 120, 0.15);
+    box-shadow: inset 0 0 50px rgba(255, 45, 120, 0.2);
+
+    &::before {
+      border-radius: 45%;
+      background-color: rgba(40, 0, 20, 0.95);
+      animation: wave 5s linear infinite;
+    }
+
+    &::after {
+      border-radius: 40%;
+      background-color: rgba(255, 45, 120, 0.15);
+      animation: wave 10s linear infinite;
+    }
+  }
+}
