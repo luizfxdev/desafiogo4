@@ -187,6 +187,12 @@ npm run dev
 # App disponível em http://localhost:3000
 ```
 
+### Script
+
+```bash
+chmod +x start.sh
+./start.sh
+```
 ---
 
 ## 🎮 Como Usar
