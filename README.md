@@ -27,7 +27,7 @@ Seu sistema deve:
 
 ## 🔄 Fluxo de Dados
 
-\`\`\`
+```
 ┌─────────────────────────────────────────────────────────────┐
 │ 1. USUÁRIO SELECIONA UMA FAIXA                             │
 │    ├─ Escolhe no <select> estilizado (cyberpunk)           │
@@ -79,6 +79,7 @@ Seu sistema deve:
 │    └─ RETORNAR para audioFile=null e seek(0)               │
 └─────────────────────────────────────────────────────────────┘
 
+```
 ---
 
 ## 📋 Estrutura do Projeto
