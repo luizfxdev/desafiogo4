@@ -28,12 +28,19 @@ export default function MusicPage() {
   const [audioFile,   setAudioFile]   = useState<string | null>(null)
   const [loading,     setLoading]     = useState(true)
   const [showOutput,  setShowOutput]  = useState(false)
+  const [apiStatus,   setApiStatus]   = useState<'online' | 'offline' | 'checking'>('checking')
 
   const { videoRef } = useBackgroundVideo()
   const selected = musics.find(m => m.id === selectedId) ?? musics[0]
 
   const { isPlaying, progress, currentTime, duration, togglePlay, seek, formatTime } =
     useAudio(audioFile)
+
+  const checkApi = useCallback(() => {
+    fetch('/api/music')
+      .then(r => r.ok ? setApiStatus('online') : setApiStatus('offline'))
+      .catch(() => setApiStatus('offline'))
+  }, [])
 
   useEffect(() => {
     fetch('/api/music')
@@ -44,9 +51,18 @@ export default function MusicPage() {
           : (data as any)?.musics ?? (data as any)?.data ?? []
         setMusics(arr)
         setLoading(false)
+        setApiStatus('online')
       })
-      .catch(console.error)
+      .catch(() => {
+        setLoading(false)
+        setApiStatus('offline')
+      })
   }, [])
+
+  useEffect(() => {
+    const interval = setInterval(checkApi, 30000)
+    return () => clearInterval(interval)
+  }, [checkApi])
 
   const handleSelect = useCallback((id: number) => {
     setSelectedId(id)
@@ -154,6 +170,15 @@ export default function MusicPage() {
             <span className={`${styles.tag} ${styles.tagPink}`}>{selected.producao.gravadora}</span>
             <span className={`${styles.tag} ${styles.tagPurple}`}>{selected.producao.pais}</span>
             <span className={`${styles.tag} ${styles.tagGreen}`}>{selected.bpm} BPM</span>
+          </div>
+
+          <div className={`${styles.apiStatus} ${styles[apiStatus]}`}>
+            <span className={styles.apiDot} />
+            <span className={styles.apiLabel}>API</span>
+            <span className={styles.apiValue}>
+              {apiStatus === 'online' ? 'ONLINE' : apiStatus === 'offline' ? 'OFFLINE' : 'VERIFICANDO...'}
+            </span>
+            <span className={styles.apiEndpoint}>:8080/api/musics</span>
           </div>
 
           <div>

@@ -156,6 +156,55 @@
   &.tagGreen  { border-color: $neon-green;  color: $neon-green;  }
 }
 
+.apiStatus {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid $border-glow;
+  background: rgba(0, 0, 0, 0.3);
+  font-family: $font-mono;
+
+  &.online  { border-color: rgba($neon-green, 0.4); }
+  &.offline { border-color: rgba($neon-pink, 0.4);  }
+  &.checking { border-color: $border-glow; }
+}
+
+.apiDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+
+  .online &  { background: $neon-green; box-shadow: 0 0 8px $neon-green; animation: blink 1.5s step-end infinite; }
+  .offline & { background: $neon-pink;  box-shadow: 0 0 8px $neon-pink; }
+  .checking & { background: $neon-blue; opacity: 0.5; }
+}
+
+.apiLabel {
+  font-size: 0.52rem;
+  letter-spacing: 3px;
+  color: $text-muted;
+  text-transform: uppercase;
+}
+
+.apiValue {
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+
+  .online &  { color: $neon-green; text-shadow: 0 0 8px rgba($neon-green, 0.6); }
+  .offline & { color: $neon-pink;  text-shadow: 0 0 8px rgba($neon-pink, 0.6); }
+  .checking & { color: $neon-blue; }
+}
+
+.apiEndpoint {
+  font-size: 0.55rem;
+  color: $text-muted;
+  margin-left: auto;
+  letter-spacing: 0.5px;
+}
+
 .sectionLabel {
   font-family: $font-display;
   font-size: 0.5rem;

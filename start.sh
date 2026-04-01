@@ -2,6 +2,19 @@
 
 ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
+echo "Limpando processos anteriores..."
+pkill -f "go run main.go" 2>/dev/null
+pkill -f "next dev" 2>/dev/null
+sleep 1
+
+echo "Limpando cache do frontend..."
+rm -rf "$ROOT_DIR/frontend/.next"
+
+if [ ! -d "$ROOT_DIR/backend/assets" ]; then
+  cp -r "$ROOT_DIR/frontend/public/assets" "$ROOT_DIR/backend/assets"
+  echo "Assets copiados para backend/assets."
+fi
+
 start_backend() {
   cd "$ROOT_DIR/backend"
   go run main.go &
