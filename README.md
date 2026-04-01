@@ -78,7 +78,7 @@ Seu sistema deve:
 │    ├─ Anterior/próxima navegam no array de músicas         │
 │    └─ RETORNAR para audioFile=null e seek(0)               │
 └─────────────────────────────────────────────────────────────┘
-\`\`\`
+
 ---
 
 ## 📋 Estrutura do Projeto
