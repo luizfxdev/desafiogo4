@@ -27,46 +27,58 @@ Seu sistema deve:
 
 ## 🔄 Fluxo de Dados
 
-```
+\`\`\`
 ┌─────────────────────────────────────────────────────────────┐
 │ 1. USUÁRIO SELECIONA UMA FAIXA                             │
-│    ├─ Escolhe no <select> estilizado                       │
-│    ├─ JSON da faixa é exibido no terminal                  │
-│    └─ Metadados atualizam em tempo real                    │
+│    ├─ Escolhe no <select> estilizado (cyberpunk)           │
+│    ├─ handleSelect() reseta audioFile para null            │
+│    ├─ JSON da faixa re-renderiza com animação fadeInUp     │
+│    └─ Stats (BPM, duração, ano) e tags atualizam           │
 └────────────────────┬────────────────────────────────────────┘
                      │
 ┌────────────────────▼────────────────────────────────────────┐
-│ 2. NEXT.JS ROUTE HANDLER PROCESSA                          │
-│    ├─ GET /api/music → lista todas as faixas               │
-│    ├─ GET /api/music?id=N → faixa específica               │
-│    └─ Faz proxy para o backend Go                          │
+│ 2. USUÁRIO CLICA EM INICIAR                                │
+│    ├─ handleIniciar() seta audioFile com nome do .mp3      │
+│    ├─ useEffect detecta mudança em audioFile               │
+│    ├─ requestAnimationFrame aguarda commit do React        │
+│    └─ useEffectEvent dispara togglePlay() sem stale closure│
 └────────────────────┬────────────────────────────────────────┘
                      │
 ┌────────────────────▼────────────────────────────────────────┐
-│ 3. BACKEND GO PROCESSA                                     │
-│    ├─ Lê music1-5.json com ioutil.ReadFile()               │
-│    ├─ Desempacota com json.Unmarshal()                     │
-│    ├─ GET /api/musics → retorna lista completa             │
-│    ├─ GET /api/musics/:id → retorna faixa por ID           │
-│    └─ GET /api/audio/:filename → stream do MP3             │
+│ 3. NEXT.JS ROUTE HANDLER (src/app/api/music/route.ts)      │
+│    ├─ GET /api/music → proxy para /api/musics no Go        │
+│    ├─ GET /api/music?id=N → proxy para /api/musics/:id     │
+│    ├─ Dinâmico por padrão (Next.js 16, sem cache)          │
+│    └─ try/catch retorna 503 se backend indisponível        │
 └────────────────────┬────────────────────────────────────────┘
                      │
 ┌────────────────────▼────────────────────────────────────────┐
-│ 4. FRONTEND RENDERIZA                                      │
-│    ├─ Output terminal com JSON colorizado                  │
-│    ├─ Stats: BPM, duração, ano                             │
-│    ├─ Barras de som animadas (gradiente neon)              │
-│    └─ Player com progresso, play/pause, anterior/próxima   │
+│ 4. BACKEND GO (Gin) PROCESSA                               │
+│    ├─ Lê music1-5.json com os.ReadFile()                   │
+│    ├─ Desempacota com json.Unmarshal() em struct Music      │
+│    ├─ GET /api/musics → retorna slice []Music              │
+│    ├─ GET /api/musics/:id → retorna Music por ID           │
+│    ├─ GET /api/audio/:filename → stream do .mp3            │
+│    └─ CORS liberado para http://localhost:3000             │
 └────────────────────┬────────────────────────────────────────┘
                      │
 ┌────────────────────▼────────────────────────────────────────┐
-│ 5. USUÁRIO OUVE E NAVEGA                                   │
-│    ├─ Clica INICIAR para reproduzir                        │
-│    ├─ Controla com player externo ao container             │
-│    └─ Clica RETORNAR para parar e resetar                  │
+│ 5. FRONTEND RENDERIZA E REPRODUZ                           │
+│    ├─ useAudio cria HTMLAudioElement com URL do backend     │
+│    ├─ Barras de som animadas (quiet/normal/loud por BPM)   │
+│    ├─ Gradiente neon: verde → azul → roxo                  │
+│    ├─ Output terminal: chaves azul, strings verde, nums rosa│
+│    └─ Player externo: progresso, play/pause, prev/next     │
+└────────────────────┬────────────────────────────────────────┘
+                     │
+┌────────────────────▼────────────────────────────────────────┐
+│ 6. USUÁRIO CONTROLA A REPRODUÇÃO                           │
+│    ├─ Play/pause via togglePlay() com useRef anti-stale    │
+│    ├─ Seek clicando ou com ← → na barra de progresso       │
+│    ├─ Anterior/próxima navegam no array de músicas         │
+│    └─ RETORNAR para audioFile=null e seek(0)               │
 └─────────────────────────────────────────────────────────────┘
-```
-
+\`\`\`
 ---
 
 ## 📋 Estrutura do Projeto
